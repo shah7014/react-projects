@@ -1,0 +1,40 @@
+@use "../../styles" as s;
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: s.rem(22) s.rem(20) s.rem(50);
+  background-color: s.$introBg;
+
+  @include s.breakpoint {
+    padding: s.rem(70) s.rem(80);
+  }
+
+  &__logo {
+    width: s.rem(83);
+
+    @include s.breakpoint {
+      width: s.rem(185);
+    }
+  }
+
+  &__links {
+    display: flex;
+    font-size: s.rem(14);
+
+    @include s.breakpoint {
+      font-size: 1rem;
+    }
+
+    li {
+      &:not(:last-child) {
+        margin-right: s.rem(22);
+
+        @include s.breakpoint {
+          margin-right: s.rem(56);
+        }
+      }
+    }
+  }
+}

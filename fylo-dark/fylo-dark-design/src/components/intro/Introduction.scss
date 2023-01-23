@@ -1,0 +1,42 @@
+@use "../../styles/" as s;
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: s.$introBg;
+  text-align: center;
+
+  @include s.breakpoint-down {
+    padding: 0 s.rem(34);
+  }
+
+  &__img {
+    width: 100%;
+    max-width: s.rem(715);
+  }
+
+  &__heading {
+    max-width: s.rem(678);
+    font-size: clamp(s.rem(20), 1rem + 2vw, s.rem(40));
+    line-height: 1.5;
+    margin-top: s.rem(40);
+
+    @include s.breakpoint {
+      margin-top: s.rem(62);
+    }
+  }
+
+  &__desc {
+    max-width: s.rem(578);
+  }
+
+  &__cta {
+    margin-top: s.rem(32);
+
+    @include s.breakpoint {
+      margin-top: s.rem(28);
+      padding: s.rem(21) s.rem(95);
+    }
+  }
+}

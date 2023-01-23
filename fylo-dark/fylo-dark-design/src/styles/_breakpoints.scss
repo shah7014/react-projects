@@ -1,0 +1,15 @@
+// - Mobile: 375px
+// - Desktop: 1440px
+@use "./functions" as f;
+
+@mixin breakpoint {
+  @media (min-width: f.rem(1440)) {
+    @content;
+  }
+}
+
+@mixin breakpoint-down {
+  @media (max-width: f.rem(1439.98)) {
+    @content;
+  }
+}

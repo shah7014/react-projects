@@ -1,0 +1,18 @@
+@use "variables" as v;
+
+h1,
+h2,
+h3 {
+  font-family: v.$font-title;
+}
+
+h1 {
+  font-weight: 700;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-bottom: 0;
+}
