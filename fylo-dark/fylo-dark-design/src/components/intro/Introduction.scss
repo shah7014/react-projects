@@ -6,9 +6,31 @@
   align-items: center;
   background-color: s.$introBg;
   text-align: center;
+  padding: 0 s.rem(34) s.rem(117);
 
-  @include s.breakpoint-down {
-    padding: 0 s.rem(34);
+  position: relative;
+
+  border: 1px solid aqua;
+
+  &::after {
+    content: "";
+    background-image: url("../../images/bg-curvy-mobile.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom center;
+    width: 100%;
+    height: s.rem(120);
+    position: absolute;
+    bottom: 0;
+
+    @include s.breakpoint {
+      background-image: url("../../images/bg-curvy-desktop.svg");
+      height: s.rem(480);
+    }
+  }
+
+  @include s.breakpoint {
+    padding-bottom: s.rem(155);
   }
 
   &__img {
@@ -18,9 +40,9 @@
 
   &__heading {
     max-width: s.rem(678);
-    font-size: clamp(s.rem(20), 1rem + 2vw, s.rem(40));
     line-height: 1.5;
     margin-top: s.rem(40);
+    z-index: 1;
 
     @include s.breakpoint {
       margin-top: s.rem(62);
@@ -29,10 +51,12 @@
 
   &__desc {
     max-width: s.rem(578);
+    z-index: 1;
   }
 
   &__cta {
     margin-top: s.rem(32);
+    z-index: 1;
 
     @include s.breakpoint {
       margin-top: s.rem(28);

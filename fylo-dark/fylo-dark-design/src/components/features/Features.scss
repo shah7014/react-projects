@@ -1,0 +1,28 @@
+@use "../../styles" as s;
+
+.features {
+  padding: 0 s.rem(34);
+
+  @include s.breakpoint {
+    // padding: 0 s.rem(280);
+    max-width: s.rem(870);
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: s.rem(200);
+    row-gap: s.rem(93);
+  }
+
+  .feature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    @include s.breakpoint-down {
+      &:not(:first-child) {
+        margin-top: s.rem(77);
+      }
+    }
+  }
+}
