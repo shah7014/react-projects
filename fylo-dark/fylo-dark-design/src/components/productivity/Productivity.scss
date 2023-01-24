@@ -1,0 +1,27 @@
+@use "../../styles" as s;
+
+.prod {
+  max-width: s.rem(1212);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: s.rem(46);
+
+  @include s.breakpoint-up(medium) {
+    grid-template-columns: repeat(2, 1fr);
+    margin-inline: auto;
+    gap: s.rem(63);
+  }
+
+  &__image {
+    @include s.breakpoint-down(small) {
+      padding: 0 s.rem(30);
+      width: 100%;
+    }
+  }
+
+  .content {
+    @include s.breakpoint-down(small) {
+      padding: 0 s.rem(26);
+    }
+  }
+}

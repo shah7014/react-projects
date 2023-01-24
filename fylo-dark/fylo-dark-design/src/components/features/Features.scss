@@ -1,7 +1,7 @@
 @use "../../styles" as s;
 
 .features {
-  padding: 0 s.rem(34);
+  padding: 0 s.rem(34) s.rem(110);
 
   @include s.breakpoint-up(medium) {
     // padding: 0 s.rem(280);
@@ -9,15 +9,20 @@
     margin-inline: auto;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    column-gap: s.rem(200);
+    column-gap: s.rem(150);
     row-gap: s.rem(93);
+    padding-bottom: s.rem(140);
   }
 
   .feature {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
     text-align: center;
+
+    &--logo {
+      height: s.rem(80);
+    }
 
     @include s.breakpoint-down(small) {
       &:not(:first-child) {
