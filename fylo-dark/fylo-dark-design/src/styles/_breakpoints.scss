@@ -1,16 +1,27 @@
-// - Mobile: 375px
-// - Desktop: 1440px
-
 @use "./functions" as f;
 
-@mixin breakpoint {
-  @media (min-width: f.rem(800)) {
+// starting values for screens
+$breakpoints-up-value: (
+  "medium": f.rem(700),
+  "large": f.rem(900),
+  "xLarge": f.rem(1440),
+);
+
+@mixin breakpoint-up($size) {
+  @media (min-width: map-get($breakpoints-up-value, $size)) {
     @content;
   }
 }
 
-@mixin breakpoint-down {
-  @media (max-width: f.rem(374.98)) {
+// ending value for screens
+$breakpoints-down-value: (
+  "small": f.rem(699.98),
+  "medium": f.rem(899.98),
+  "large": f.rem(1439.98),
+);
+
+@mixin breakpoint-down($size) {
+  @media (max-width: map-get($breakpoints-down-value, $size)) {
     @content;
   }
 }

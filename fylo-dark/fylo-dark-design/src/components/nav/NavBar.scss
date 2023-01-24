@@ -7,14 +7,14 @@
   padding: s.rem(22) s.rem(20) s.rem(50);
   background-color: s.$introBg;
 
-  @include s.breakpoint {
+  @include s.breakpoint-up(xLarge) {
     padding: s.rem(70) s.rem(80);
   }
 
   &__logo {
     width: s.rem(83);
 
-    @include s.breakpoint {
+    @include s.breakpoint-up(xLarge) {
       width: s.rem(185);
     }
   }
@@ -23,7 +23,7 @@
     display: flex;
     font-size: s.rem(14);
 
-    @include s.breakpoint {
+    @include s.breakpoint-up(xLarge) {
       font-size: 1rem;
     }
 
@@ -31,7 +31,7 @@
       &:not(:last-child) {
         margin-right: s.rem(22);
 
-        @include s.breakpoint {
+        @include s.breakpoint-up(xLarge) {
           margin-right: s.rem(56);
         }
       }

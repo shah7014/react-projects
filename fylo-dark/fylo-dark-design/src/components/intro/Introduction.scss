@@ -10,8 +10,6 @@
 
   position: relative;
 
-  border: 1px solid aqua;
-
   &::after {
     content: "";
     background-image: url("../../images/bg-curvy-mobile.svg");
@@ -19,17 +17,26 @@
     background-size: cover;
     background-position: bottom center;
     width: 100%;
-    height: s.rem(120);
+
+    // using relative units instead of px
+    height: 40vw;
     position: absolute;
     bottom: 0;
 
-    @include s.breakpoint {
+    @include s.breakpoint-up(medium) {
       background-image: url("../../images/bg-curvy-desktop.svg");
-      height: s.rem(480);
+      // height: s.rem(480);
     }
   }
 
-  @include s.breakpoint {
+  // mobile has curvy img above and then below dark bg
+  // how to handle this?
+
+  > * {
+    z-index: 1;
+  }
+
+  @include s.breakpoint-up(medium) {
     padding-bottom: s.rem(155);
   }
 
@@ -42,23 +49,20 @@
     max-width: s.rem(678);
     line-height: 1.5;
     margin-top: s.rem(40);
-    z-index: 1;
 
-    @include s.breakpoint {
+    @include s.breakpoint-up(medium) {
       margin-top: s.rem(62);
     }
   }
 
   &__desc {
     max-width: s.rem(578);
-    z-index: 1;
   }
 
   &__cta {
     margin-top: s.rem(32);
-    z-index: 1;
 
-    @include s.breakpoint {
+    @include s.breakpoint-up(medium) {
       margin-top: s.rem(28);
       padding: s.rem(21) s.rem(95);
     }
