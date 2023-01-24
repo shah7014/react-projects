@@ -5,21 +5,26 @@ import { Link } from "react-router-dom";
 
 const Productivity = () => {
   return (
-    <div className="prod">
-      <img src={prodImage} alt="productivity" className="prod__image" />
+    <section className="prod">
+      <div className="prod__image">
+        <img src={prodImage} alt="productivity" />
+      </div>
+
       <div className="content">
-        <h3 className="content--title">Stay productive, wherever you are</h3>
-        <p className="content--desc">
+        <h1 className="content__title">Stay productive, wherever you are</h1>
+        <p className="content__desc">
           Never let location be an issue when accessing your files. Fylo has you
           covered for all of your file storage needs.
         </p>
-        <p className="content--desc">
+        <p className="content__desc">
           Securely share files and folders with friends, family and colleagues
           for live collaboration. No email attachments required.
         </p>
-        <Link to="/">See how Fylo works</Link>
+        <Link to="/" className="content__link">
+          See how Fylo works
+        </Link>
       </div>
-    </div>
+    </section>
   );
 };
 

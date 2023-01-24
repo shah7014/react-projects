@@ -4,19 +4,18 @@ import allFeatures from "./all-features-data";
 
 const Features = () => {
   return (
-    <div className="features">
+    <section className="features">
       {allFeatures.map((feature) => (
         <div className="feature">
-          <img
-            src={feature.logo}
-            alt="desscription"
-            className="feature--logo"
-          />
-          <h3 className="feature--title">{feature.title}</h3>
-          <p className="feature--desc">{feature.desc}</p>
+          <div className="feature__logo">
+            <img src={feature.logo} alt="desscription" />
+          </div>
+
+          <h3 className="feature__title">{feature.title}</h3>
+          <p className="feature__desc">{feature.desc}</p>
         </div>
       ))}
-    </div>
+    </section>
   );
 };
 
