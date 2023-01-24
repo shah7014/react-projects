@@ -1,20 +1,23 @@
 @use "../../styles" as s;
 
 .nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: s.rem(22) s.rem(20) s.rem(50);
   background-color: s.$introBg;
 
-  @include s.breakpoint-up(xLarge) {
-    padding: s.rem(70) s.rem(80);
+  .nav-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: s.rem(22) s.rem(20) s.rem(50);
+
+    @include s.breakpoint-up(large) {
+      padding: s.rem(70) s.rem(80);
+    }
   }
 
   &__logo {
     width: s.rem(83);
 
-    @include s.breakpoint-up(xLarge) {
+    @include s.breakpoint-up(large) {
       width: s.rem(185);
     }
   }
@@ -23,7 +26,7 @@
     display: flex;
     font-size: s.rem(14);
 
-    @include s.breakpoint-up(xLarge) {
+    @include s.breakpoint-up(large) {
       font-size: 1rem;
     }
 
@@ -31,7 +34,7 @@
       &:not(:last-child) {
         margin-right: s.rem(22);
 
-        @include s.breakpoint-up(xLarge) {
+        @include s.breakpoint-up(large) {
           margin-right: s.rem(56);
         }
       }

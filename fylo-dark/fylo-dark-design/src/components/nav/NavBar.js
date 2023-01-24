@@ -6,21 +6,23 @@ import { Link } from "react-router-dom";
 const NavBar = () => {
   return (
     <div className="nav">
-      <Link to="/">
-        <img className="nav__logo" src={logo} alt="fylo-icon" />
-      </Link>
+      <div className="container nav-flex">
+        <Link to="/">
+          <img className="nav__logo" src={logo} alt="fylo-icon" />
+        </Link>
 
-      <ul className="nav__links">
-        <li>
-          <Link to="/">Features</Link>
-        </li>
-        <li>
-          <Link to="/">Team</Link>
-        </li>
-        <li>
-          <Link to="/">Sign In</Link>
-        </li>
-      </ul>
+        <ul className="nav__links">
+          <li>
+            <Link to="/">Features</Link>
+          </li>
+          <li>
+            <Link to="/">Team</Link>
+          </li>
+          <li>
+            <Link to="/">Sign In</Link>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };

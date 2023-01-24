@@ -1,14 +1,17 @@
 @use "../../styles/" as s;
 
 .intro {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   background-color: s.$introBg;
-  text-align: center;
   padding: 0 s.rem(34) s.rem(117);
 
   position: relative;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 
   &::after {
     content: "";
