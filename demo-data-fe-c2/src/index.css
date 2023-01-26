@@ -5,3 +5,8 @@
 body {
   background-color: #000300;
 }
+
+a:hover {
+  text-decoration: underline;
+  font-weight: bold;
+}
