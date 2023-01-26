@@ -1,12 +1,22 @@
 import "./App.css";
-import { Hero, NavBar, Introduction } from "./components";
+import {
+  Hero,
+  NavBar,
+  IntroductionFlex,
+  IntroductionGrid,
+  NewsLetterFlex,
+  NewsLetterGrid,
+} from "./components";
 
 function App() {
   return (
     <div>
       <NavBar />
       <Hero />
-      <Introduction />
+      {/* <IntroductionFlex /> */}
+      <IntroductionGrid />
+      <NewsLetterFlex />
+      {/* <NewsLetterGrid /> */}
     </div>
   );
 }
