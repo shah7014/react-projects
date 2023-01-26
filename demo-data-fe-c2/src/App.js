@@ -7,6 +7,7 @@ import {
   NewsLetterFlex,
   NewsLetterGrid,
   PriceOptions,
+  Footer,
 } from "./components";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
       <NewsLetterFlex />
       {/* <NewsLetterGrid /> */}
       <PriceOptions />
+      <Footer />
     </div>
   );
 }
