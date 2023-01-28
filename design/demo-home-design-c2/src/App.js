@@ -1,10 +1,11 @@
-import { Hero, NavBar } from "./components";
+import { About, Hero, NavBar } from "./components";
 
 function App() {
   return (
     <div>
       <NavBar />
       <Hero />
+      <About />
     </div>
   );
 }
