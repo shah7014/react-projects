@@ -1,33 +1,10 @@
-import NavBar from "./components/NavBar";
+import { Hero, NavBar } from "./components";
 
 function App() {
   return (
     <div>
       <NavBar />
-      <h1 className="text-4xl">Hello</h1>
-      <h1 className="text-4xl">Hello</h1>
-      <h1 className="text-4xl">Hello</h1>
-      <h1 className="text-4xl">Hello</h1>
-      <h1 className="text-4xl">Hello</h1>
-      <h1 className="text-4xl">Hello</h1>
-      <h1 className="text-4xl">Hello</h1>
-      <h1 className="text-4xl">Hello</h1>
-      <h1 className="text-4xl">Hello</h1>
-      <h1 className="text-4xl">Hello</h1>
-      <h1 className="text-4xl">Hello</h1>
-      <h1 className="text-4xl">Hello</h1>
-      <h1 className="text-4xl">Hello</h1>
-      <h1 className="text-4xl">Hello</h1>
-      <h1 className="text-4xl">Hello</h1>
-      <h1 className="text-4xl">Hello</h1>
-      <h1 className="text-4xl">Hello</h1>
-      <h1 className="text-4xl">Hello</h1>
-      <h1 className="text-4xl">Hello</h1>
-      <h1 className="text-4xl">Hello</h1>
-      <h1 className="text-4xl">Hello</h1>
-      <h1 className="text-4xl">Hello</h1>
-      <h1 className="text-4xl">Hello</h1>
-      <h1 className="text-4xl">Hello</h1>
+      <Hero />
     </div>
   );
 }
