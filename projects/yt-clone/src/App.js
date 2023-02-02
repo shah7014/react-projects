@@ -7,13 +7,14 @@ import {
   VideoDetail,
   ChannelDetail,
   SearchFeed,
+  Footer,
 } from "./components";
 
 function App() {
   return (
     <>
       <CssBaseline />
-      <Box sx={{}}>
+      <Box sx={{ backgroundColor: "#000" }}>
         <NavBar />
         <Routes>
           <Route path="/" element={<Feed />} />
@@ -21,6 +22,7 @@ function App() {
           <Route path="/channel/:id" element={<ChannelDetail />} />
           <Route path="/search/:searchTerm" element={<SearchFeed />} />
         </Routes>
+        <Footer />
       </Box>
     </>
   );

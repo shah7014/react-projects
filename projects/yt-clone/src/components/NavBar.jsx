@@ -1,4 +1,5 @@
 import { Stack } from "@mui/material";
+import zIndex from "@mui/material/styles/zIndex";
 import React from "react";
 import { Link } from "react-router-dom";
 import { logo } from "../utils/constants";
@@ -10,7 +11,13 @@ const NavBar = () => {
       direction={"row"}
       alignItems="center"
       justifyContent="space-between"
-      sx={{ padding: 2, position: "sticky", top: 0, backgroundColor: "#000" }}
+      sx={{
+        padding: 2,
+        position: "sticky",
+        top: 0,
+        backgroundColor: "#000",
+        zIndex: 10,
+      }}
     >
       {/* Logo */}
       <Link to="/" style={{ display: "flex", alignItems: "center" }}>
