@@ -6,7 +6,7 @@ const Videos = ({ videos }) => {
   return (
     <Grid2 container spacing={2}>
       {videos.map((v, index) => (
-        <Grid2 xs={12} sm={6} md={4} lg={3} xl={2} key={index}>
+        <Grid2 xs={12} sm={6} md={4} lg={3} key={index}>
           {v.id.channelId ? (
             <ChannelCard channel={v} />
           ) : (

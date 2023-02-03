@@ -15,39 +15,49 @@ const ChannelCard = ({
   },
 }) => {
   return (
-    <Link to={channelId ? `/channel/${channelId}` : demoChannelUrl}>
-      <Card sx={{ background: "transparent" }}>
-        <Stack justifyContent="center" alignItems="center">
+    <Card
+      sx={{
+        background: "transparent",
+        borderRadius: "none",
+        boxShadow: "none",
+      }}
+    >
+      <Stack justifyContent="center" alignItems="center">
+        <Link to={channelId ? `/channel/${channelId}` : demoChannelUrl}>
           <CardMedia
             component="img"
             image={thumbnails?.high?.url || demoThumbnailUrl}
             sx={{ width: "180px", height: "180px", borderRadius: "50%" }}
           />
-          <CardContent>
-            <Stack
-              direction="row"
-              alignItems="center"
-              justifyContent="center"
-              spacing={1}
-            >
-              <Typography
-                variant="h6"
-                sx={{ fontWeight: "bold", color: "white" }}
+        </Link>
+        <CardContent>
+          <Stack alignItems="center">
+            <Link to={channelId ? `/channel/${channelId}` : demoChannelUrl}>
+              <Stack
+                direction="row"
+                alignItems="center"
+                justifyContent="center"
+                spacing={1}
               >
-                {channelTitle || demoChannelTitle}
-              </Typography>
-              <CheckCircle sx={{ fontSize: "15px", color: "gray" }} />
-            </Stack>
+                <Typography
+                  variant="h6"
+                  sx={{ fontWeight: "bold", color: "white" }}
+                >
+                  {channelTitle || demoChannelTitle}
+                </Typography>
+                <CheckCircle sx={{ fontSize: "15px", color: "gray" }} />
+              </Stack>
+            </Link>
             {statistics && statistics?.subscriberCount && (
-              <Typography>
+              <Typography sx={{ color: "#fff", opacity: "0.8" }}>
                 {parseInt(statistics.subscriberCount).toLocaleString() +
                   " Subscribers"}
               </Typography>
             )}
-          </CardContent>
-        </Stack>
-      </Card>
-    </Link>
+          </Stack>
+        </CardContent>
+      </Stack>
+    </Card>
   );
 };
 
