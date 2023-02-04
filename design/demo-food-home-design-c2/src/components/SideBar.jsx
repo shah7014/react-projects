@@ -8,8 +8,6 @@ import { BsFillArrowDownSquareFill } from "react-icons/bs";
 import { FaUserFriends } from "react-icons/fa";
 
 const SideBar = ({ isOpen, onToggle }) => {
-  const closeModal = (e) => {};
-
   return (
     <>
       {/* Overlay */}

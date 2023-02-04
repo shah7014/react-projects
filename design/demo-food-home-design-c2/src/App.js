@@ -1,9 +1,10 @@
-import { NavBar } from "./components";
+import { NavBar, Hero } from "./components";
 
 function App() {
   return (
     <>
       <NavBar />
+      <Hero />
     </>
   );
 }
