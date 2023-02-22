@@ -1,32 +1,38 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import Modal from "../components/Modal";
 import * as mealsService from "../services/meals.service";
 
 export const AppContext = createContext({
   meals: [],
   favorites: [],
   isLoading: false,
+  modalProperties: { isOpen: false, meal: null },
   addToFavorites: () => {},
   removeFromFavorites: () => {},
   setSearchTerm: () => {},
   getRandomMeal: () => {},
+  onModalClose: () => {},
+  setModalProperties: () => {},
 });
 
 export const AppContextProvider = (props) => {
-  // state of meals
   const [meals, setMeals] = useState([]);
 
-  // search term state
   const [searchTerm, setSearchTerm] = useState("");
 
-  // state of isLoading
   const [isLoading, setIsLoading] = useState(false);
 
-  // useEffect to get meals on search term
+  const [modalProperties, setModalProperties] = useState({
+    isOpen: false,
+    meal: null,
+  });
+
+  const [favorites, setFavorites] = useState([]);
+
   const fetchMeals = async (term) => {
     setIsLoading(true);
     const data = await mealsService.searchMealsBy(term);
     setIsLoading(false);
-
     setMeals(data);
   };
 
@@ -49,7 +55,10 @@ export const AppContextProvider = (props) => {
     fetchMeals(searchTerm);
   }, [searchTerm]);
 
-  const [favorites, setFavorites] = useState([]);
+  const onModalClose = () => {
+    setModalProperties({ isOpen: false, meal: null });
+  };
+
   const addToFavorites = (newItem) => {
     setFavorites((prev) => [...prev, newItem]);
   };
@@ -68,6 +77,9 @@ export const AppContextProvider = (props) => {
     isLoading,
     setSearchTerm,
     getRandomMeal,
+    modalProperties,
+    onModalClose,
+    setModalProperties,
   };
 
   return (

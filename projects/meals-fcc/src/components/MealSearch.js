@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { useGlobalContext } from "../context/app-comtext";
+import { useGlobalContext } from "../context/app-context";
 
 const MealSearch = () => {
   const [searchBy, setSearchBy] = useState("");
