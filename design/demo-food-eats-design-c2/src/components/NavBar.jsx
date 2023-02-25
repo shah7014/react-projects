@@ -31,7 +31,7 @@ const NavBar = () => {
   }
 
   return (
-    <div className="h-24 flex flex-row justify-between items-center py-4 px-2 sticky top-0 z-10">
+    <div className="h-24 flex flex-row justify-between items-center py-4 px-2 sticky top-0 z-10 bg-white">
       {/* hamburger_menu + title + buttons */}
       <div className="flex flex-row gap-4 items-center">
         <FaHamburger

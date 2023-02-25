@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 import { AiOutlineClose } from "react-icons/ai";
-import { menuItems } from "../utils/constants";
+import { MENU_ITEMS } from "../utils/constants";
 import MenuItem from "./MenuItem";
 
 const SideBarMenu = () => {
@@ -33,7 +33,7 @@ const SideBarMenu = () => {
 
         {/* Link Options */}
         <ul className="mt-8 flex flex-col gap-4 items-start">
-          {menuItems.map((i) => (
+          {MENU_ITEMS.map((i) => (
             <MenuItem key={i.id} {...i} />
           ))}
         </ul>
