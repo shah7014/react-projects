@@ -30,6 +30,9 @@ const Icons = styled(Box)(({ theme }) => ({
   gap: "10px",
   alignItems: "center",
   [theme.breakpoints.up("md")]: { display: "flex" },
+  //  this below line not working
+
+  // display: { xs: "none", md: "flex" },
 }));
 
 const UserBox = styled(Box)(({ theme }) => ({
@@ -37,6 +40,8 @@ const UserBox = styled(Box)(({ theme }) => ({
   gap: "8px",
   alignItems: "center",
   [theme.breakpoints.up("md")]: { display: "none" },
+  //  this below line not working
+  // display: { xs: "flex", md: "none" },
 }));
 
 const NavBar = () => {
