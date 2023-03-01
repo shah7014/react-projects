@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { setAllProducts } from "../redux/actions/productActions";
+import {
+  fetchAllProducts,
+  setAllProducts,
+} from "../redux/actions/productActions";
 import { Link } from "react-router-dom";
 
 const Home = () => {
@@ -10,11 +13,13 @@ const Home = () => {
   const products = useSelector((state) => state.allProducts.products);
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      const { data } = await axios.get("https://fakestoreapi.com/products");
-      dispatch(setAllProducts(data));
-    };
-    fetchProducts();
+    // const fetchProducts = async () => {
+    //   const { data } = await axios.get("https://fakestoreapi.com/products");
+    //   dispatch(setAllProducts(data));
+    // };
+    // fetchProducts();
+
+    dispatch(fetchAllProducts());
   }, [dispatch]);
 
   return (
