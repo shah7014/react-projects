@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { allUsersSelector } from "../users/usersSlice";
-import { addAPost } from "./postsSlice";
+import { allUsersSelector } from "../../users/usersSlice";
+import { addNewPost, addPost } from "../postsSlice";
 
 const AddPostForm = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [userId, setUserId] = useState("");
+
+  const [addRequestStatus, setAddRequestStatus] = useState("idle");
 
   const dispatch = useDispatch();
 
@@ -18,10 +20,21 @@ const AddPostForm = () => {
     </option>
   ));
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
     // dispatch(addAPost({ id: nanoid(), title, content }));
-    dispatch(addAPost(title, content, userId));
+    try {
+      setAddRequestStatus("pending");
+      await dispatch(addNewPost({ title, body: content, userId })).unwrap();
+
+      setTitle("");
+      setContent("");
+      setUserId("");
+    } catch (error) {
+      console.log("Something broke" + error);
+    } finally {
+      setAddRequestStatus("idle");
+    }
   };
 
   return (
