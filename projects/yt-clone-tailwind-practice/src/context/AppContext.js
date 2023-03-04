@@ -21,7 +21,7 @@ export const AppContextProvider = (props) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const fecthVideosByCategory = async () => {
+    const fetchVideosByCategory = async () => {
       try {
         setLoading(true);
         const { items } = await fetchDataFromApi("/search", {
@@ -37,7 +37,7 @@ export const AppContextProvider = (props) => {
       }
     };
 
-    // fecthVideosByCategory();
+    fetchVideosByCategory();
   }, [selectedCategory]);
 
   return (
