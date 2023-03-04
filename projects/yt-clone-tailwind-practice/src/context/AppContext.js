@@ -1,25 +1,40 @@
 import React, { createContext, useEffect, useState } from "react";
 import { fetchDataFromApi } from "../utils/api";
 
-export const AppContext = createContext();
+export const AppContext = createContext({
+  loading: false,
+  setLoading: () => {},
+  selectedCategory: "",
+  setSelectedCategory: () => {},
+  searchResults: [],
+  mobileMenuOpen: false,
+  setMobileMenuOpen: () => {},
+});
 
 export const AppContextProvider = (props) => {
   const [loading, setLoading] = useState(false);
 
   const [selectedCategory, setSelectedCategory] = useState("New");
 
-  const [searhcResults, setSearhcResults] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const fecthVideosByCategory = async () => {
-      setLoading(true);
-      const response = await fetchDataFromApi(`search/?q=${selectedCategory}`);
-      const contents = response.contents;
-      console.log(contents);
-      setLoading(false);
-      setSearhcResults(contents);
+      try {
+        setLoading(true);
+        const { items } = await fetchDataFromApi("/search", {
+          q: selectedCategory,
+        });
+        console.log(items);
+        setSearchResults(items);
+      } catch (error) {
+        console.log(error);
+        setSearchResults([]);
+      } finally {
+        setLoading(false);
+      }
     };
 
     // fecthVideosByCategory();
@@ -32,7 +47,7 @@ export const AppContextProvider = (props) => {
         setLoading,
         selectedCategory,
         setSelectedCategory,
-        searhcResults,
+        searchResults,
         mobileMenuOpen,
         setMobileMenuOpen,
       }}

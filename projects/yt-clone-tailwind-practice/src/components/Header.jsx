@@ -1,67 +1,73 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import largeLogo from "../images/yt-logo.png";
 import smallLogo from "../images/yt-logo-mobile.png";
-import { AiOutlineSearch } from "react-icons/ai";
 import { AppContext } from "../context/AppContext";
-import { Link, useNavigate } from "react-router-dom";
-import { CgClose } from "react-icons/cg";
-import { SlMenu } from "react-icons/sl";
+import { Link } from "react-router-dom";
+import { AiOutlineClose } from "react-icons/ai";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { BiVideoPlus } from "react-icons/bi";
+import { IoMdNotificationsOutline } from "react-icons/io";
+import SearchBox from "./SearchBox";
 
 const Header = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-
   const { mobileMenuOpen, setMobileMenuOpen } = useContext(AppContext);
 
-  const navigate = useNavigate();
-
-  const handleEnterClick = (e) => {
-    if (e.key === "Enter" && searchTerm.length > 0) {
-      navigate(`/searchResults/${searchTerm}`);
-    }
-  };
-
-  const handleSearchTermChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
-
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen((data) => !data);
-  };
-
   return (
-    <div className="sticky top-0 z-10 flex flex-row justify-between items-center px-4 h-14 md:px-5">
+    <div className="sticky top-0 z-5 flex flex-row justify-between items-center px-4 h-14 md:px-5">
       {/* different image for screen size + icon for mobile menu */}
-      <div className="flex flex-row gap-1 h-5">
-        <div className="flex items-center md:hidden">
-          {mobileMenuOpen && (
-            <CgClose
-              className=" text-xl text-white cursor-pointer"
-              onClick={toggleMobileMenu}
-            />
-          )}
-          {!mobileMenuOpen && (
-            <SlMenu
-              className="text-xl text-white cursor-pointer"
-              onClick={toggleMobileMenu}
-            />
-          )}
-        </div>
+      <div className="flex flex-row gap-2 items-center">
+        {/* Hamburger + close */}
+        {!mobileMenuOpen && (
+          <GiHamburgerMenu
+            className="flex text-2xl text-white md:hidden"
+            onClick={() => setMobileMenuOpen(true)}
+          />
+        )}
+        {mobileMenuOpen && (
+          <AiOutlineClose
+            className="flex text-2xl text-white md:hidden"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+        )}
+
+        {/* Logo */}
         <Link to="/">
-          <img src={largeLogo} alt="logo" className="h-full hidden md:flex" />
-          <img src={smallLogo} alt="logo" className="h-full md:hidden" />
+          <img src={smallLogo} alt="logo" className="h-[20px] flex md:hidden" />
+        </Link>
+        <Link to="/">
+          <img
+            src={largeLogo}
+            alt="logo"
+            className="h-[20px] lg:h-[25px] hidden md:flex"
+          />
         </Link>
       </div>
 
-      {/* input + search icon */}
-      <div className="flex items-center h-8 md:h-10">
-        <input
-          placeholder="Search"
-          className="bg-transparent text-white pl-4 focus:outline-none border border-[#303030] rounded-l-3xl h-full w-44 md:w-64 lg:w-[500px] "
-        />
-        <AiOutlineSearch className="text-white h-full bg-gray-500 rounded-r-3xl cursor-pointer w-[40px] md:w-[60px]" />
-      </div>
+      {/* SearchBox */}
+      <SearchBox />
 
-      {/* icons */}
+      {/* Icons + profile image */}
+      <div className="flex flex-row items-center gap-6">
+        {/* Icons */}
+        <div className="hidden flex-row gap-6  md:flex">
+          {/* Surround each icon with div to add hover bg change and circular border */}
+          <div className="h-10 w-10 rounded-full flex flex-row items-center justify-center hover:bg-[#303030]/[0.6]">
+            <BiVideoPlus className="cursor-pointer text-white text-2xl" />
+          </div>
+          <div className="h-10 w-10 rounded-full flex flex-row items-center justify-center hover:bg-[#303030]/[0.6]">
+            <IoMdNotificationsOutline className="cursor-pointer text-white text-2xl" />
+          </div>
+        </div>
+
+        {/* Profile Image */}
+        <div className="w-8 h-8 rounded-full">
+          <img
+            src="https://xsgames.co/randomusers/avatar.php?g=male"
+            alt="pic"
+            className="cursor-pointer w-full h-full rounded-full"
+          />
+        </div>
+      </div>
     </div>
   );
 };

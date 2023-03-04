@@ -7,7 +7,7 @@ import VideoDetail from "./views/VideoDetail";
 
 function App() {
   return (
-    <div className="bg-black h-screen">
+    <div className="bg-black">
       <Header />
       <Routes>
         <Route path="/" element={<Feed />} />
