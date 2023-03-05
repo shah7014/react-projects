@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { allUsersSelector } from "../../users/usersSlice";
+import { selectAllUsers } from "../../users/usersSlice";
 import { addNewPost, addPost } from "../postsSlice";
 
 const AddPostForm = () => {
@@ -12,7 +12,7 @@ const AddPostForm = () => {
 
   const dispatch = useDispatch();
 
-  const allUsers = useSelector(allUsersSelector);
+  const allUsers = useSelector(selectAllUsers);
 
   const userOptions = allUsers.map((u) => (
     <option value={u.id} key={u.id}>

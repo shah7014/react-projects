@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { allUsersSelector } from "../../users/usersSlice";
+import { selectAllUsers } from "../../users/usersSlice";
 import { postSelctorById, updatePost } from "../postsSlice";
 
 const EditPostView = () => {
@@ -22,7 +22,7 @@ const EditPostView = () => {
     postSelctorById(state, Number(postId))
   );
 
-  const users = useSelector(allUsersSelector);
+  const users = useSelector(selectAllUsers);
 
   useEffect(() => {
     if (selectedPost) {

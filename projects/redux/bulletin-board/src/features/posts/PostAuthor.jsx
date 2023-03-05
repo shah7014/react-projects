@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { allUsersSelector } from "../users/usersSlice";
+import { selectAllUsers } from "../users/usersSlice";
 
 const PostAuthor = ({ userId }) => {
-  const users = useSelector(allUsersSelector);
+  const users = useSelector(selectAllUsers);
 
   const author = users.find((u) => u.id === Number(userId));
 

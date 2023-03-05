@@ -1,13 +1,39 @@
-import { createSlice, nanoid, createAsyncThunk } from "@reduxjs/toolkit";
+import {
+  createSlice,
+  nanoid,
+  createAsyncThunk,
+  createSelector,
+  createEntityAdapter,
+} from "@reduxjs/toolkit";
 import axios from "axios";
 
 const POSTS_URL = "https://jsonplaceholder.typicode.com/posts";
 
-const initialState = {
-  posts: [],
+const postsAdapter = createEntityAdapter();
+
+// Normalized state:-
+const normalizedState = {
+  posts: {
+    ids: [1, 2, 3],
+    entities: {
+      1: {
+        id: 1,
+        title: "post-1",
+        content: "content-1",
+      },
+    },
+  },
+};
+
+// const initialState = {
+//   posts: [],
+//   status: "idle", // 'pending' | 'succeeded' | 'failed'
+//   error: null,
+// };
+const initialState = postsAdapter.getInitialState({
   status: "idle", // 'pending' | 'succeeded' | 'failed'
   error: null,
-};
+});
 
 export const fetchPosts = createAsyncThunk(
   "posts/fetchPosts",
@@ -87,7 +113,9 @@ const postsSlice = createSlice({
     },
     updateReaction: {
       reducer: (state, { payload: { id, reactionUpdated } }) => {
-        const post = state.posts.find((p) => p.id === id);
+        // const post = state.posts.find((p) => p.id === id);
+        // after normalization
+        const post = state.entities[id];
         post.reactions[reactionUpdated]++;
       },
       prepare: (postId, reactionUpdated) => {
@@ -115,7 +143,8 @@ const postsSlice = createSlice({
             coffee: 0,
           },
         }));
-        state.posts = posts;
+        postsAdapter.upsertMany(state, posts);
+        // state.posts = posts;
       })
       .addCase(fetchPosts.rejected, (state, action) => {
         state.status = "failed";
@@ -133,7 +162,7 @@ const postsSlice = createSlice({
         action.payload.userId = Number(action.payload.userId);
         action.payload.content = action.payload.body;
         // state.posts.push(action.payload);
-        state.posts = [action.payload, ...state.posts];
+        postsAdapter.addOne(state, action.payload);
       })
       // cant add case for pending and rejected bcoz that would be the same state shared between post and addPostForm then twice loading might appear
       // .addCase(addNewPost.pending, (state, action) => {
@@ -145,17 +174,19 @@ const postsSlice = createSlice({
       // });
       .addCase(updatePost.fulfilled, (state, action) => {
         action.payload.content = action.payload.body;
-        const posts = state.posts.filter((p) => p.id !== action.payload.id);
-        state.posts = [action.payload, ...posts];
+        // const posts = state.posts.filter((p) => p.id !== action.payload.id);
+        // state.posts = [action.payload, ...posts];
+        postsAdapter.upsertOne(state, action.payload);
       })
       .addCase(deletePost.fulfilled, (state, action) => {
         const postId = action.payload;
-        state.posts = state.posts.filter((p) => p.id !== postId);
+        // state.posts = state.posts.filter((p) => p.id !== postId);
+        postsAdapter.removeOne(state, postId);
       });
   },
 });
 
-export const allPostsSelector = (state) => state.posts.posts;
+// export const allPostsSelector = (state) => state.posts.posts;
 export const postsStatusSelector = (state) => state.posts.status;
 export const postsErrorSelector = (state) => state.posts.error;
 
@@ -167,8 +198,19 @@ export const postsErrorSelector = (state) => state.posts.error;
 // };
 
 // or what is done in tutorial
-export const postSelctorById = (state, id) =>
-  state.posts.posts.find((p) => p.id === id);
+// export const postSelctorById = (state, id) =>
+//   state.posts.posts.find((p) => p.id === id);
+
+export const {
+  selectAll: allPostsSelector,
+  selectIds: allPotsIdsSelector,
+  selectById: postSelctorById,
+} = postsAdapter.getSelectors((state) => state.posts);
+
+export const postSelectorByuser = createSelector(
+  [allPostsSelector, (state, userId) => userId],
+  (posts, userId) => posts.filter((p) => p.userId === userId)
+);
 
 export const { addPost, updateReaction } = postsSlice.actions;
 

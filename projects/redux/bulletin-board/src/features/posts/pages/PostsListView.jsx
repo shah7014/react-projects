@@ -1,10 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import PostAuthor from "../PostAuthor";
-import PostReactions from "../PostReactions";
+import PostExcert from "../PostExcert";
 import {
-  allPostsSelector,
+  allPotsIdsSelector,
   postsErrorSelector,
   postsStatusSelector,
 } from "../postsSlice";
@@ -12,7 +10,10 @@ import {
 const Posts = () => {
   // const dispatch = useDispatch();
 
-  const availablePosts = useSelector(allPostsSelector);
+  // const availablePosts = useSelector(allPostsSelector);
+
+  const allPostIds = useSelector(allPotsIdsSelector);
+
   const postStatus = useSelector(postsStatusSelector);
   const postsError = useSelector(postsErrorSelector);
 
@@ -23,30 +24,12 @@ const Posts = () => {
   //   }
   // }, [dispatch, postStatus]);
 
+  console.log("rendered");
+
   let content = <p className="text-white text-xl">Loading...</p>;
 
   if (postStatus === "succeeded") {
-    content = availablePosts.map((post) => (
-      <div
-        className="border border-white rounded-xl px-4 py-6 mb-3"
-        key={post.id}
-      >
-        <h4 className="text-3xl font-bold text-white mb-2">{post.title}</h4>
-        <p className="text-2xl text-white mb-2 italic">
-          {post.content.substring(0, 75) + "..."}
-        </p>
-        <div className="flex flex-row gap-3 items-center ">
-          <Link
-            to={`/post/${post.id}`}
-            className="text-xl text-blue-500 underline"
-          >
-            View Post
-          </Link>
-          <PostAuthor userId={post.userId} />
-        </div>
-        <PostReactions post={post} />
-      </div>
-    ));
+    content = allPostIds.map((id) => <PostExcert postId={id} key={id} />);
   } else if (postStatus === "failed") {
     content = <p className="text-red-700 text-xl">{postsError}</p>;
   }
