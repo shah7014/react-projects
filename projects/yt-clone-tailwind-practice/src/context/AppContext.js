@@ -14,7 +14,7 @@ export const AppContext = createContext({
 export const AppContextProvider = (props) => {
   const [loading, setLoading] = useState(false);
 
-  const [selectedCategory, setSelectedCategory] = useState("New");
+  const [selectedCategory, setSelectedCategory] = useState("Music");
 
   const [searchResults, setSearchResults] = useState([]);
 
