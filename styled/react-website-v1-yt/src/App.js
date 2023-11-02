@@ -2,6 +2,7 @@ import React from "react";
 import { NavBar } from "./components";
 import GlobalStyle from "./globalStyles";
 import { Route, Routes } from "react-router-dom";
+import SampleComponent from "./components/MyComponent";
 
 const App = () => {
   return (

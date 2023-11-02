@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import {
   MobileMenu,
   MobileMenuContainer,
@@ -16,9 +16,20 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
 import { NavLink } from "react-router-dom";
 import { Button } from "../../globalStyles";
+import useEventListener from "../../hooks/useEventListener";
 
 const NavBar = () => {
   const [isMobileMenuOpen, setisMobileMenuOpen] = useState(false);
+
+  const mobileMenuRef = useRef(null);
+
+  const closeMobileMenu = useCallback((e) => {
+    if (e.target.nodeName.toLowerCase() === "a") {
+      setisMobileMenuOpen(false);
+    }
+  }, []);
+
+  useEventListener("click", closeMobileMenu, mobileMenuRef);
 
   return (
     <IconContext.Provider value={{ color: "#fff", size: "2rem" }}>
@@ -53,6 +64,7 @@ const NavBar = () => {
           <MobileMenuContainer
             $isMobileMenuOpen={isMobileMenuOpen}
             data-testid="mobile-menu"
+            ref={mobileMenuRef}
           >
             <MobileMenu>
               <li>
