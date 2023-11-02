@@ -1,23 +1,19 @@
-import styled from "styled-components";
+import React from "react";
 import { NavBar } from "./components";
-
-const Button = styled.button`
-  background: black;
-  padding: 0.5rem 1rem;
-  border: none;
-  color: white;
-`;
-
-const RedButton = styled(Button)`
-  background: red;
-`;
+import GlobalStyle from "./globalStyles";
+import { Route, Routes } from "react-router-dom";
 
 const App = () => {
   return (
     <>
-      {/* <NavBar /> */}
-      <Button>Some button</Button>
-      <RedButton as={"a"}>Some red button</RedButton>
+      <GlobalStyle />
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<h1>Hello world</h1>} />
+        <Route path="/services" element={<h1>Hello Servcies</h1>} />
+        <Route path="/products" element={<h1>Hello Products</h1>} />
+        <Route path="/sign-up" element={<h1>Hello SignUp</h1>} />
+      </Routes>
     </>
   );
 };
