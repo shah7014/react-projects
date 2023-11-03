@@ -11,7 +11,7 @@ export const InfoRow = styled.div`
   align-items: center;
   padding: 5rem 0;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 968px) {
     align-items: flex-start;
     flex-direction: ${({ $imgStart }) =>
       $imgStart ? "column-reverse" : "column"};
@@ -24,7 +24,7 @@ export const InfoColumn = styled.div`
   flex-basis: 50%;
   max-width: 50%;
 
-  @media (max-width: 768px) {
+  @media (max-width: 968px) {
     max-width: 100%;
     flex-basis: 100%;
     display: flex;
@@ -53,7 +53,7 @@ export const Description = styled.p`
   line-height: 24px;
   color: ${({ $lightTextDesc }) => ($lightTextDesc ? "#a9b3c1" : "#1c2237")};
 
-  @media (max-width: 768px) {
+  @media (max-width: 968px) {
     max-width: 100%;
   }
 `;

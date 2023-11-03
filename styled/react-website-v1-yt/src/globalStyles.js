@@ -16,7 +16,7 @@ export const Container = styled.div`
   padding-right: 50px;
   padding-left: 50px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 968px) {
     padding-right: 30px;
     padding-left: 30px;
   }
@@ -35,7 +35,7 @@ export const Button = styled.button`
   &:hover {
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 968px) {
     width: 100%;
   }
 `;
