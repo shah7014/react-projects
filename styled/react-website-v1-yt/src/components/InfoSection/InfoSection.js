@@ -31,19 +31,21 @@ const InfoSection = ({
   return (
     <>
       <InfoSec $lightBg={lightBg}>
-        <InfoContainer>
+        <Container>
           <InfoRow $imgStart={imgStart}>
             <InfoColumn>
-              <TopLine $lightTopLine={lightTopLine}>{topLine}</TopLine>
-              <Heading $lightText={lightText}>{heading}</Heading>
-              <Description $lightTextDesc={lightTextDesc}>
-                {description}
-              </Description>
-              <Link to={"/sign-up"}>
-                <Button $big $fontBig $primary={primary}>
-                  {buttonLabel}
-                </Button>
-              </Link>
+              <div>
+                <TopLine $lightTopLine={lightTopLine}>{topLine}</TopLine>
+                <Heading $lightText={lightText}>{heading}</Heading>
+                <Description $lightTextDesc={lightTextDesc}>
+                  {description}
+                </Description>
+                <Link to={"/sign-up"}>
+                  <Button $big $fontBig $primary={primary}>
+                    {buttonLabel}
+                  </Button>
+                </Link>
+              </div>
             </InfoColumn>
 
             {/* For Image */}
@@ -53,7 +55,7 @@ const InfoSection = ({
               </ImageWrapper>
             </InfoColumn>
           </InfoRow>
-        </InfoContainer>
+        </Container>
       </InfoSec>
     </>
   );

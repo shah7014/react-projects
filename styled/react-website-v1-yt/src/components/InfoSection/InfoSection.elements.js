@@ -1,30 +1,25 @@
 import styled from "styled-components";
-import { Container } from "../../globalStyles";
 
 export const InfoSec = styled.div`
-  height: calc(100vh - 80px);
   background: ${({ $lightBg }) => ($lightBg ? "#fff" : "#101522")};
   color: #fff;
 `;
 
-export const InfoContainer = styled(Container)`
-  height: 100%;
-`;
-
 export const InfoRow = styled.div`
   display: flex;
-  flex-wrap: wrap;
   flex-direction: ${({ $imgStart }) => ($imgStart ? "row-reverse" : "row")};
   align-items: center;
-  height: 100%;
+  padding: 5rem 0;
 
   @media screen and (max-width: 768px) {
     align-items: flex-start;
+    flex-direction: ${({ $imgStart }) =>
+      $imgStart ? "column-reverse" : "column"};
+    gap: 5rem;
   }
 `;
 
 export const InfoColumn = styled.div`
-  padding: 0 15px;
   flex: 1;
   flex-basis: 50%;
   max-width: 50%;
@@ -32,7 +27,7 @@ export const InfoColumn = styled.div`
   @media (max-width: 768px) {
     max-width: 100%;
     flex-basis: 100%;
-    margin-top: 80px;
+    display: flex;
   }
 `;
 

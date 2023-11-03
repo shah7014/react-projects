@@ -1,3 +1,4 @@
+import profileImg from "../images/profile.jpg";
 import image1 from "../images/svg-1.svg";
 import image2 from "../images/svg-2.svg";
 import image3 from "../images/svg-3.svg";
@@ -31,8 +32,8 @@ export const homeObjTwo = {
     "We help business owners increase their revenue. Our team of unique specialist can help you achieve your business goals",
   buttonLabel: "Get Started",
   start: true,
-  src: image2,
-  alt: "Image-2",
+  src: profileImg,
+  alt: "Profile",
 };
 export const homeObjThree = {
   lightBg: false,
@@ -47,6 +48,23 @@ export const homeObjThree = {
     "We help business owners increase their revenue. Our team of unique specialist can help you achieve your business goals",
   buttonLabel: "Get Started",
   start: false,
+  src: image2,
+  alt: "Image-2",
+};
+
+export const homeObjFour = {
+  lightBg: true,
+  imgStart: true,
+  primary: true,
+  lightTopLine: false,
+  lightText: false,
+  lightTextDesc: false,
+  topLine: "Marketing Agency",
+  heading: "Lead Generation Specialist for Online Business",
+  description:
+    "We help business owners increase their revenue. Our team of unique specialist can help you achieve your business goals",
+  buttonLabel: "Get Started",
+  start: true,
   src: image3,
   alt: "Image-3",
 };
