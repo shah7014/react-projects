@@ -12,7 +12,7 @@
 
 lets say we want to register an input with name as "username"
 
-`const form = useForm();
+```const form = useForm();
   const {register}  = form;
   const {name, ref, onChange, onBlur} = register("username");
-`
+```
