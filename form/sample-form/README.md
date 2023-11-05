@@ -1,3 +1,4 @@
 ### Getting started with RHF
 
-- ![RHF starting point]("./docs/basics.md")
+- ![RHF starting point](docs/starter.md)
+- ![RHF intermediate](docs/intermediate.md)

@@ -19,7 +19,24 @@ const SampleForm = () => {
     formState: { errors },
     control,
     handleSubmit,
-  } = useForm({});
+  } = useForm({
+    defaultValues: async () => {
+      const response = await fetch(
+        "https://jsonplaceholder.typicode.com/users/1"
+      );
+      const data = await response.json();
+      return {
+        username: data.username,
+        email: data.email,
+        channel: `${data.username}'s channel`,
+        address: {
+          street: data.address.street,
+          city: data.address.city,
+        },
+        phoneNumbers: ["", ""],
+      };
+    },
+  });
 
   numberOfTimeRender++;
 
@@ -106,6 +123,69 @@ const SampleForm = () => {
               })}
             />
             <FormError>{errors.channel?.message}</FormError>
+          </FormControl>
+
+          {/* address field which is a nested object */}
+
+          <FormControl>
+            <FormLabel htmlFor="street">Street</FormLabel>
+            <FormTextInput
+              type="text"
+              id="street"
+              {...register("address.street", {
+                required: {
+                  value: true,
+                  message: "Street is a required",
+                },
+              })}
+            />
+            <FormError>{errors.address?.street?.message}</FormError>
+          </FormControl>
+
+          <FormControl>
+            <FormLabel htmlFor="city">City</FormLabel>
+            <FormTextInput
+              type="text"
+              id="city"
+              {...register("address.city", {
+                required: {
+                  value: true,
+                  message: "city is a required",
+                },
+              })}
+            />
+            <FormError>{errors.address?.city?.message}</FormError>
+          </FormControl>
+
+          {/* Phone number is an array */}
+          <FormControl>
+            <FormLabel htmlFor="primary-phone">Primary Phone Number</FormLabel>
+            <FormTextInput
+              type="text"
+              id="primary-phone"
+              {...register("phoneNumbers.0", {
+                required: {
+                  value: true,
+                  message: "Primary phone number is required",
+                },
+              })}
+            />
+            <FormError>{errors.phoneNumbers?.[0]?.message}</FormError>
+          </FormControl>
+
+          <FormControl>
+            <FormLabel htmlFor="sec-phone">Secondary Phone Number</FormLabel>
+            <FormTextInput
+              type="text"
+              id="sec-phone"
+              {...register("phoneNumbers.1", {
+                required: {
+                  value: true,
+                  message: "Secondary phone number is required",
+                },
+              })}
+            />
+            <FormError>{errors.phoneNumbers?.[1]?.message}</FormError>
           </FormControl>
 
           <Button $primary type="submit">

@@ -3,7 +3,7 @@
 - `npm install react-hook-form`
 - for visualistaion `npm install -D @hookform/devtools`
 
-### In a form we need to care about these things:-
+### In a form we need to care about these things
 
 - managing form data (eg:- your form is multi step form and you need to show data correctly that user has selected going back and forward)
 
@@ -13,7 +13,7 @@
 
 - Performance- react-hook-form doesn't renrender the whole form component on every key stroke, the way controller form does. it behaves in same way as uncontrolled form.
 
-### Managing form data:-
+### Managing form data
 
 lets say we want to register an input with name as "username"
 
@@ -22,7 +22,7 @@ lets say we want to register an input with name as "username"
   const {name, ref, onChange, onBlur} = register("username");
 ```
 
-### Form field validations and showing errors to the users:-
+### Form field validations and showing errors to the users
 
 - add `noValidate` attribute ot the `form` to prevent error handling by HTML itself and let RHF takes the whole control
 
@@ -71,7 +71,7 @@ lets say we want to register an input with name as "username"
 
 - so with the above setup there is a new `error of type called badDomain`
 
-### Form submission:-
+### Form submission
 
 - `useForm` hook returns a function called `handleSubmit` which takes `2 arguments which are both handler functions. First handler runs when a valid form is submitted and second one runs when invalid form is submitted`
 
@@ -85,7 +85,7 @@ lets say we want to register an input with name as "username"
   <form onSubmit={handleSubmit(validFormSubmissionHandler)}></form>
 ```
 
-### Managing form states-
+### Managing form states
 
 - the form as a whole and each and every input has staes like `dirty` and `touched`
 - `dirty` means the currentValue of the input is not same as default value
