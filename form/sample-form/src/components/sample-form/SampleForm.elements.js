@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const FormTitle = styled.h1`
+  text-align: center;
+`;
+
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
@@ -31,4 +35,15 @@ export const FormTextInput = styled.input`
   border-radius: 5px;
   background: grey;
   border: 1px solid #f1f1f1;
+
+  &:focus,
+  &:hover {
+    background-color: white;
+    border: 1px solid black;
+  }
+`;
+
+export const FormError = styled.p`
+  color: tomato;
+  font-size: 12px;
 `;

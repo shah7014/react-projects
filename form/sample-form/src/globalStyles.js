@@ -1,8 +1,6 @@
 import styled, { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
-
 
   * {
     padding: 0;
@@ -11,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Poppins', sans-serif;
     color: #fff;
     background-color: #000;
   }
