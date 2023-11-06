@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Button } from "../../globalStyles";
 
 export const FormTitle = styled.h1`
   text-align: center;
@@ -46,4 +47,31 @@ export const FormTextInput = styled.input`
 export const FormError = styled.p`
   color: tomato;
   font-size: 12px;
+`;
+
+export const FormFieldContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const FormFieldControl = styled(FormControl)`
+  width: 100%;
+`;
+
+export const RemoveFieldButton = styled(Button)`
+  align-self: flex-end;
+  @media screen and (max-width: 968px) {
+    width: 100px;
+  }
+`;
+
+export const ButtonContainer = styled.div`
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+
+  @media (max-width: 968px) {
+    flex-direction: column;
+  }
 `;

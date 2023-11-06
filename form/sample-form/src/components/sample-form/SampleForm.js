@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import { Button, Container } from "../../globalStyles";
 import {
@@ -9,6 +9,10 @@ import {
   FormLabel,
   FormTextInput,
   FormError,
+  FormFieldControl,
+  RemoveFieldButton,
+  FormFieldContainer,
+  ButtonContainer,
 } from "./SampleForm.elements";
 
 let numberOfTimeRender = 0;
@@ -19,6 +23,9 @@ const SampleForm = () => {
     formState: { errors },
     control,
     handleSubmit,
+    watch,
+    getValues,
+    setValue,
   } = useForm({
     defaultValues: async () => {
       const response = await fetch(
@@ -34,11 +41,26 @@ const SampleForm = () => {
           city: data.address.city,
         },
         phoneNumbers: ["", ""],
+        visited: [
+          {
+            place: "",
+            city: "",
+            country: "",
+          },
+        ],
+        age: 0,
       };
     },
   });
 
+  const { fields, append, remove } = useFieldArray({
+    name: "visited",
+    control,
+  });
+
   numberOfTimeRender++;
+
+  // watch("username");
 
   const validFormSubmissionHandler = (data) => {
     console.log("submitted data:- ", data);
@@ -49,6 +71,21 @@ const SampleForm = () => {
       "Errors found on form submission as for is invalid:- ",
       errorFound
     );
+  };
+
+  const handleSetUserNameValue = () => {
+    setValue("username", "", {
+      shouldDirty: true,
+      shouldValidate: true,
+      shouldTouch: true,
+    });
+  };
+
+  const handleGetValues = () => {
+    console.log(getValues());
+    console.log(getValues(["username", "address"]));
+    console.log(getValues("address.city"));
+    console.log(getValues("visited.0.place"));
   };
 
   return (
@@ -188,9 +225,87 @@ const SampleForm = () => {
             <FormError>{errors.phoneNumbers?.[1]?.message}</FormError>
           </FormControl>
 
-          <Button $primary type="submit">
-            Submit
-          </Button>
+          {/* Dynamic fields array */}
+          <FormControl>
+            <FormLabel>List of Places Visited</FormLabel>
+
+            {fields.map((field, index) => (
+              <FormFieldContainer key={field.id}>
+                <FormFieldControl>
+                  <FormLabel htmlFor={`visited.${index}.place`}>
+                    Place
+                  </FormLabel>
+                  <FormTextInput
+                    id={`visited.${index}.place`}
+                    {...register(`visited.${index}.place`, {
+                      required: "Place is a required field",
+                    })}
+                  />
+                </FormFieldControl>
+                <FormFieldControl>
+                  <FormLabel htmlFor={`visited.${index}.city`}>City</FormLabel>
+                  <FormTextInput
+                    id={`visited.${index}.city`}
+                    {...register(`visited.${index}.city`)}
+                  />
+                </FormFieldControl>
+                <FormFieldControl>
+                  <FormLabel htmlFor={`visited.${index}.country`}>
+                    Country
+                  </FormLabel>
+                  <FormTextInput
+                    id={`visited.${index}.country`}
+                    {...register(`visited.${index}.country`, {
+                      required: "Country is a required field",
+                    })}
+                  />
+                </FormFieldControl>
+                {index > 0 && (
+                  <RemoveFieldButton
+                    type="button"
+                    onClick={() => remove(index)}
+                  >
+                    Remove Place
+                  </RemoveFieldButton>
+                )}
+              </FormFieldContainer>
+            ))}
+            <Button
+              type="button"
+              onClick={() => append({ city: "", place: "", country: "" })}
+            >
+              Add Place
+            </Button>
+          </FormControl>
+
+          <FormControl>
+            <FormLabel htmlFor="age">Age</FormLabel>
+            <FormTextInput
+              id="age"
+              type="number"
+              {...register("age", {
+                valueAsNumber: true,
+                required: "Age is a required field",
+                min: {
+                  value: 0,
+                  message: "Age cannot be negative",
+                },
+              })}
+            />
+            <FormError>{errors.age?.message}</FormError>
+          </FormControl>
+
+          <ButtonContainer>
+            <Button $primary type="submit">
+              Submit
+            </Button>
+            <Button type="button" onClick={handleSetUserNameValue}>
+              SetUserName
+            </Button>
+            <Button type="button" onClick={handleGetValues}>
+              GetData
+            </Button>
+          </ButtonContainer>
         </Form>
         <DevTool control={control} />
       </Container>

@@ -84,9 +84,3 @@ lets say we want to register an input with name as "username"
 
   <form onSubmit={handleSubmit(validFormSubmissionHandler)}></form>
 ```
-
-### Managing form states
-
-- the form as a whole and each and every input has staes like `dirty` and `touched`
-- `dirty` means the currentValue of the input is not same as default value
-- `touched` means the inout is touched
