@@ -133,6 +133,18 @@
 
 - every time the value changes the component will be re-rendered
 
+- issue that we sometimes do which is **wrong**
+
+```
+  const firstName = watch("firstname);
+
+  useEffect(() => {
+
+  }, [firstName]);
+
+  <!-- the issue here is that watch will always return a new value. Its not made to be used like that. its better to use it in jsx -->
+```
+
 - **How to use it with useFeect?**
 
 ### getValues
@@ -213,3 +225,23 @@
     }
   }, [isSubmitSuccessful, reset])
 ```
+
+### Validation Modes
+
+```
+  const {} = useForm({
+    mode: "onBlur" || "onChange" || "onSubmit" || "onTouched"
+  })
+
+```
+
+### Manually Trigger Validation
+
+`const {trigger} = useForm()`
+
+- we can call `trigger()` like this if we want to run validation against whole form
+
+- we can also call it with fieldName `trigger(fieldName)` to trigger validations only against that field
+
+- we can trigger validations on multiple fields also
+  `trigger(["address.street", "address.city"])`

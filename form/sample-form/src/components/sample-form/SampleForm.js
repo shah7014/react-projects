@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import { Button, Container } from "../../globalStyles";
@@ -26,31 +26,12 @@ const SampleForm = () => {
     watch,
     getValues,
     setValue,
+    trigger,
   } = useForm({
-    defaultValues: async () => {
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/users/1"
-      );
-      const data = await response.json();
-      return {
-        username: data.username,
-        email: data.email,
-        channel: `${data.username}'s channel`,
-        address: {
-          street: data.address.street,
-          city: data.address.city,
-        },
-        phoneNumbers: ["", ""],
-        visited: [
-          {
-            place: "",
-            city: "",
-            country: "",
-          },
-        ],
-        age: 0,
-      };
+    defaultValues: {
+      username: "test-user",
     },
+    mode: "onSubmit",
   });
 
   const { fields, append, remove } = useFieldArray({
@@ -60,7 +41,11 @@ const SampleForm = () => {
 
   numberOfTimeRender++;
 
-  // watch("username");
+  // const username = watch("username");
+
+  // useEffect(() => {
+  //   console.log("I am running effect with value :- ", username);
+  // }, [username]);
 
   const validFormSubmissionHandler = (data) => {
     console.log("submitted data:- ", data);
@@ -140,6 +125,13 @@ const SampleForm = () => {
                       !fieldValue.endsWith("@test.com") ||
                       "This email domain is unsupported"
                     );
+                  },
+                  isEmailAlreadyRegistered: async (fieldvalue) => {
+                    const response = await fetch(
+                      `https://jsonplaceholder.typicode.com/users?email=${fieldvalue}`
+                    );
+                    const data = await response.json();
+                    return data.length === 0 || "Email is already registered";
                   },
                 },
               })}
@@ -304,6 +296,14 @@ const SampleForm = () => {
             </Button>
             <Button type="button" onClick={handleGetValues}>
               GetData
+            </Button>
+            <Button
+              type="button"
+              onClick={() => {
+                trigger(["address.street", "address.city"]);
+              }}
+            >
+              Validate
             </Button>
           </ButtonContainer>
         </Form>
