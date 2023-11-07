@@ -20,7 +20,7 @@ let numberOfTimeRender = 0;
 const SampleForm = () => {
   const {
     register,
-    formState: { errors },
+    formState: { errors, isValid, isDirty, isSubmitSuccessful },
     control,
     handleSubmit,
     watch,

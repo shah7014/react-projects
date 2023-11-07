@@ -40,6 +40,11 @@ export const Button = styled.button`
     background-color: ${({ $primary }) => ($primary ? "#0467FB" : "#4B59F7")};
   }
 
+  &:disabled {
+    background: gray;
+    color: #e1e1e1;
+  }
+
   @media screen and (max-width: 968px) {
     width: 100%;
   }

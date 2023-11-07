@@ -177,3 +177,39 @@
 - the form as a whole and each and every input has states like `dirty` and `touched`
 - `dirty` means the currentValue of the input is not same as defaultValue
 - `touched` means the inout is interacted with. So if we focus on the input and click somewhere else then that input is amrked as touched
+
+### Disabling a field
+
+```
+  register("username", {
+    disabled: true
+  })
+```
+
+- if we disable a field then validations are not triggered against it and field value becomes undefined
+
+### Disabling a submit button could also be done
+
+```
+  const {formState: {isDirty, isValid}} = useForm();
+```
+
+- based on `isDirty` and `isValid`, can disable the submit button
+
+### Resetting the form
+
+`const {reset} = useForm()`
+
+- One use case is when the form is submitted, we want to reset the form
+
+```
+  const {formState: {isSubmitSuccessful}, reset} = useForm();
+
+  <!-- its recommended to not use `reset` inside onSubmitSuccessHandler -->
+
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset();
+    }
+  }, [isSubmitSuccessful, reset])
+```
