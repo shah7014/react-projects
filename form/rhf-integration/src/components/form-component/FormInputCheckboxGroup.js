@@ -6,15 +6,11 @@ import {
   FormLabel,
 } from "@mui/material";
 import React, { useState } from "react";
-import { Controller } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 
-const FormInputCheckbox = ({
-  label,
-  control,
-  fieldName,
-  rules = {},
-  options,
-}) => {
+const FormInputCheckboxGroup = ({ label, fieldName, rules = {}, options }) => {
+  const { control } = useFormContext();
+
   return (
     <FormControl sx={{ m: 3 }}>
       <FormLabel>{label}</FormLabel>
@@ -57,4 +53,4 @@ const FormInputCheckbox = ({
   );
 };
 
-export default FormInputCheckbox;
+export default FormInputCheckboxGroup;

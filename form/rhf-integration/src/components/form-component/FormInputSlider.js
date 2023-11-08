@@ -1,14 +1,9 @@
 import { FormControl, FormHelperText, FormLabel, Slider } from "@mui/material";
 import React from "react";
-import { Controller } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 
-const FormInputSlider = ({
-  fieldName,
-  label,
-  control,
-  sliderMarks,
-  rules = {},
-}) => {
+const FormInputSlider = ({ fieldName, label, sliderMarks, rules = {} }) => {
+  const { control } = useFormContext();
   return (
     <FormControl>
       <FormLabel>{label}</FormLabel>

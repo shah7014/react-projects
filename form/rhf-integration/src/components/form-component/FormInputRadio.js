@@ -7,9 +7,11 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
-import { Controller } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 
-const FormInputRadio = ({ label, fieldName, control, options, rules = {} }) => {
+const FormInputRadio = ({ label, fieldName, options, rules = {} }) => {
+  const { control } = useFormContext();
+
   return (
     <FormControl>
       <FormLabel>{label}</FormLabel>
