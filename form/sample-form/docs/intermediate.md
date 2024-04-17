@@ -126,6 +126,8 @@
 
 ### watch
 
+- when we are using `FormProvider` you can't use `watch` in the same component. We need to `useWatch` in child component only
+
 ```
   const {watch}= useForm();
   watch("username)
